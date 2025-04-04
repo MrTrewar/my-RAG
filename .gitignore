@@ -1,0 +1,40 @@
+# --- Virtual Environment ---
+# Exclude the virtual environment directory created by venv or virtualenv
+venv/
+
+# --- Generated Data & Databases ---
+# Exclude ChromaDB persistent storage
+chroma_db/
+# Exclude parsed text chunks
+chunks_output/
+# Exclude GROBID processing results
+grobid_output/
+# Exclude generated embeddings (if stored separately)
+embeddings_output/
+
+# --- Sensitive Information ---
+# Exclude environment variables file
+.env
+
+# --- Input Data ---
+# Exclude specific large/sensitive input files if users should provide their own
+# Example: Ignore all PDFs within the pdfs_input folder
+pdfs_input/*.pdf
+
+# --- Python Standard Exclusions ---
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.spec
+
+# --- Optional: IDE / Editor ---
+# Uncomment if needed
+.vscode/
+.idea/
