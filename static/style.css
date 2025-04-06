@@ -1,0 +1,203 @@
+/* static/style.css - High Contrast Dark Theme (White on Black) - V2 */
+
+/* --- Globale Stile & Body --- */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    line-height: 1.6;
+    background-color: #000000 !important; /* Schwarz, mit !important zur Sicherheit */
+    color: #ffffff !important; /* Weiß, mit !important zur Sicherheit */
+    overflow-x: hidden; /* Verhindert horizontalen Scrollbalken */
+}
+
+/* --- Haupt-Container & Titel --- */
+.page-container {
+    max-width: 1300px;
+    margin: 25px auto;
+    padding: 20px;
+    background-color: #000000; /* Sicherstellen, dass der Container auch schwarz ist */
+    border: 1px solid #333;
+    color: #ffffff; /* Explizit für Container-Kinder setzen */
+}
+
+h1 {
+    text-align: left;
+    color: #ffffff;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #555;
+    padding-bottom: 15px;
+    font-size: 1.7em;
+    font-weight: normal;
+}
+
+h2 {
+    color: #dddddd;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 8px;
+    font-size: 1.3em;
+    font-weight: normal;
+}
+
+/* --- Layout Spalten --- */
+.layout-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.column {
+    flex: 1;
+    padding: 10px;
+    background-color: transparent; /* Keinen eigenen Hintergrund für die Spalte */
+    border: none;
+    min-width: 300px;
+}
+
+/* Spaltenbreiten */
+.column-left { flex-basis: 60%; }
+.column-right { flex-basis: 40%; }
+
+/* --- Formular Elemente --- */
+textarea[name="query"] {
+    width: 100%;
+    min-height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 0;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background-color: #111 !important; /* Dunkelgrau, !important */
+    color: #ffffff !important; /* Weiß, !important */
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+}
+
+button[type="submit"] {
+    padding: 8px 18px;
+    cursor: pointer;
+    background-color: #333;
+    color: #ffffff;
+    border: 1px solid #666;
+    border-radius: 0;
+    font-size: 1rem;
+    font-weight: normal;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #444;
+    border-color: #888;
+}
+
+/* --- Quellen Anzeige --- */
+.source-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 0;
+    background-color: transparent; /* Sicherstellen, kein heller Hintergrund */
+}
+
+.source-meta {
+    font-size: 0.8em;
+    color: #aaaaaa;
+    margin-bottom: 8px;
+    font-family: sans-serif;
+}
+
+.source-meta strong {
+    color: #dddddd;
+    font-weight: normal;
+}
+
+.pdf-link {
+    margin-bottom: 10px;
+    display: inline-block;
+    font-size: 0.8em;
+    text-decoration: none;
+    color: #66aaff;
+    font-family: sans-serif;
+    padding: 2px 5px;
+    border: 1px solid #66aaff;
+    border-radius: 0;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.pdf-link:hover {
+    color: #000000;
+    background-color: #66aaff;
+}
+
+/* Code/Text-Abschnitte */
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: #0a0a0a !important; /* Fast Schwarz, !important */
+    padding: 10px;
+    border-radius: 0;
+    border: 1px solid #333;
+    font-size: 0.9em;
+    color: #ffffff !important; /* Weiß, !important */
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+/* --- Antwort Anzeige --- */
+.answer {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    color: #ffffff; /* Sicherstellen, dass Text hier auch weiß ist */
+}
+
+.answer p {
+    margin: 0;
+    color: #ffffff !important; /* Weiß für den Absatz, !important */
+}
+
+
+/* --- Scrollbar Styling (Webkit) --- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #111;
+}
+::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+/* --- Responsive Anpassungen --- */
+@media (max-width: 800px) {
+    .layout-container {
+        flex-direction: column;
+    }
+    .column {
+        flex-basis: 100%;
+    }
+}
+
+/* --- Zusätzliche Reset-Regeln --- */
+* { /* Reset für alle Elemente (vorsichtig verwenden) */
+    box-sizing: border-box; /* Konsistenteres Box-Modell */
+}
+
+p, div, span, h1, h2, h3, li, pre, textarea, button {
+    background-color: inherit; /* Versucht, Hintergrundfarbe zu erben, außer explizit gesetzt */
+    color: inherit; /* Versucht, Textfarbe zu erben */
+}

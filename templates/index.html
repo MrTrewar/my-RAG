@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper RAG System (Flask)</title>
+    <!-- Optional: Link zu einer CSS-Datei -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; margin: 20px; }
+        .container { display: flex; gap: 20px; }
+        .column { flex: 1; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .column-left { flex-basis: 60%; } /* Linke Spalte breiter */
+        .column-right { flex-basis: 40%; }
+        textarea { width: 95%; min-height: 100px; margin-bottom: 10px; }
+        button { padding: 10px 15px; cursor: pointer; }
+        .source-item { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+        .source-meta { font-size: 0.9em; color: #555; margin-bottom: 5px; }
+        .pdf-link { margin-bottom: 10px; display: inline-block; }
+        pre { white-space: pre-wrap; word-wrap: break-word; background-color: #f8f8f8; padding: 10px; border-radius: 3px; }
+        h2, h3 { margin-top: 0; }
+    </style>
+</head>
+<body>
+    <h1>📚 Paper RAG System (Flask)</h1>
+
+    <div class="container">
+        <div class="column column-left">
+            <h2>Relevante Textabschnitte (Kontext)</h2>
+            {% if sources %}
+                {% for source in sources %}
+                <div class="source-item">
+                    <div class="source-meta">
+                        <strong>Quelle {{ source.rank }}: {{ source.source_file }}</strong><br>
+                        (Index: {{ source.paragraph_index }}, Typ: {{ source.chunk_type }}, Distanz: {{ "%.4f"|format(source.distance) }})
+                    </div>
+                    {% if source.pdf_link %}
+                        <a href="{{ source.pdf_link }}" target="_blank" class="pdf-link">📄 Öffne PDF: {{ source.source_file }}</a>
+                    {% else %}
+                        <span style="color: red; font-size: 0.9em;">Original PDF nicht gefunden.</span>
+                    {% endif %}
+                    <pre>{{ source.text }}</pre> {# Verwende <pre> um Formatierung zu erhalten #}
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>Stelle eine Frage, um relevante Abschnitte zu sehen.</p>
+            {% endif %}
+        </div>
+
+        <div class="column column-right">
+            <h2>Frage stellen</h2>
+            <form method="POST" action="/"> {# Sendet Daten an die gleiche URL #}
+                <textarea name="query" placeholder="Deine Frage hier...">{{ last_query }}</textarea><br>
+                <button type="submit">Antwort generieren</button>
+            </form>
+
+            <h2>Antwort</h2>
+            {% if answer %}
+            <div class="answer">
+                <p>{{ answer }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>
